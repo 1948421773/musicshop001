@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF2F49</color>
+    <color name="colorPrimaryDark">#FF2F49</color>
+    <color name="colorAccent">#FF2F49</color>
+    <color name="main_tab_text_click">#333333</color>
+    <color name="main_tab_text_unclick">#FF2F49</color>
+    <color name="main_tab_line">#F8F8F8</color>
+    <color name="startPrimaryDark">#C02E1F</color>
+    <color name="white">#ffffff</color>
+</resources>
