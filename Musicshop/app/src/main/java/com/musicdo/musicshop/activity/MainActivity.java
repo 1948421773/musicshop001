@@ -1,5 +1,6 @@
 package com.musicdo.musicshop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.musicdo.musicshop.R;
 import com.musicdo.musicshop.fragments.BaseFragment;
@@ -131,6 +133,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         frameLayout=(FrameLayout) findViewById(R.id.frameLayout);
         rgMain=(RadioGroup) findViewById(R.id.rg_main);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+            Toast.makeText(MainActivity.this,bundle.getString("result"),Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

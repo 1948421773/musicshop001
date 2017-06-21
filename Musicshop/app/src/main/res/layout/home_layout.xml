@@ -54,13 +54,73 @@
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rl_qrcode_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_top">
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="256dp"
-            android:layout_height="256dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/rl_qrcode_img">
+        <Button
+            android:id="@+id/btn_scan_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Start Scan"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Result："
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_scan_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_qr_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="Input the text"/>
+
+        <Button
+            android:id="@+id/btn_add_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate QRcode"/>
+
+        <CheckBox
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logo"/>
+
+        <ImageView
+            android:id="@+id/iv_qr_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_launcher"/>
+    </LinearLayout>
 </RelativeLayout>

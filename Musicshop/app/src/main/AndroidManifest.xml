@@ -10,9 +10,10 @@
         <activity
             android:name=".activity.WelcomeGuideActivity"
             android:theme="@style/AppThemeTwo"
-            android:screenOrientation="sensor"
+            android:screenOrientation="portrait"
             >
         </activity>
+        <!--屏幕方向 android:screenOrientation="portrait"-->
         <activity android:name=".activity.SplashActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
             android:screenOrientation="sensor"

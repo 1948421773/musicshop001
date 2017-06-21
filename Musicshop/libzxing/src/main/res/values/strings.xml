@@ -1,0 +1,6 @@
+<resources>
+    <string name="zxing_bar_name">ZxingLib</string>
+    <string name="app_name">ZxingLib</string>
+    <string name="qrcode_title">二维码/条码</string>
+    <string name="qrcode_descript">将条码放入框内,即可自动扫描</string>
+</resources>
