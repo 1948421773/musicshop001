@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +25,16 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.musicdo.libzxing.activity.CaptureActivity;
 import com.musicdo.libzxing.encoding.EncodingUtils;
 import com.musicdo.musicshop.R;
+import com.musicdo.musicshop.adapter.MyAdapter;
+import com.musicdo.musicshop.view.JdRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 
 /**
@@ -40,11 +50,63 @@ public class HomeFragment extends BaseFragment {
     private EditText qrStrEditText;
     private ImageView qrImgImageView;
     private CheckBox mCheckBox;
+    /**
+     * 列表
+     */
+//    RecyclerView mRecyclerView;
 
+    /**
+     * 下拉刷新
+     */
+    JdRefreshLayout mLayout;
+
+    /**
+     * 布局管理器
+     */
+    RecyclerView.LayoutManager mManager;
+
+    /**
+     * 数据
+     */
+    private List<Object> mDatas;
+
+    /**
+     * 适配器
+     */
+    private MyAdapter mAdapter;
     @Override
     public View initView() {
         view= LayoutInflater.from(mContext).inflate(R.layout.home_layout,null);
         Log.e(TAG,"主页面的Fragment的UI被初始化了");
+        mDatas=new ArrayList<>();
+        for(int i=0;i<5;i++){
+            mDatas.add(new Object());
+        }
+
+        mLayout = (JdRefreshLayout) view.findViewById(R.id.test_recycler_view_frame);
+//        mRecyclerView = (RecyclerView) view.findViewById(R.id.test_recycler_view);
+        mManager = new LinearLayoutManager(mContext);
+//        mRecyclerView.setLayoutManager(mManager);
+        mAdapter=new MyAdapter(mDatas);
+//        mRecyclerView.setAdapter(mAdapter);
+        mLayout.setPtrHandler(new PtrDefaultHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                doSth();
+            }
+        });
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//            }
+//        });
         Qrcode=(ImageView)view.findViewById(R.id.iv_qrcode);
         Qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +158,31 @@ public class HomeFragment extends BaseFragment {
         });
         return view;
     }
+    /**
+     * demo
+     */
+    private void doSth() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                mDatas.add(new Object());
+                mAdapter.notifyDataSetChanged();
+                mLayout.refreshComplete();
+            }
+        }.execute();
+    }
 
     private Bitmap generateBitmap(String content,int width, int height) {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
@@ -143,6 +230,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+
 //        textView.setText("首页");
         Log.e(TAG,"主页面的Fragment的数据被初始化了");
     }

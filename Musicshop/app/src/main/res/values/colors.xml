@@ -8,4 +8,5 @@
     <color name="main_tab_line">#F8F8F8</color>
     <color name="startPrimaryDark">#C02E1F</color>
     <color name="white">#ffffff</color>
+    <color name="home_top_reflash_bg">#F5F5F5</color>
 </resources>
