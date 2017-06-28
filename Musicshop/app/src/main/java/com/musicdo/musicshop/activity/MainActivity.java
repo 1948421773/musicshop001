@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -18,7 +20,9 @@ import com.musicdo.musicshop.fragments.SearchFragment;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    final String  TAG="MainActivity";
     FrameLayout frameLayout;
     RadioGroup rgMain;
     //装fragment的实例集合
@@ -27,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //缓存Fragment或上次显示的Fragment
     private BaseFragment tempFragment;
     ImageView Qrcode,iv;
+    private double xDistance,yDistance  ;
+    private float xStart ,yStart,xEnd ,yEnd;
+    private float mLastX;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,6 +163,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
 
+
+    }}
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG,"onTouchEvent++++++ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                Log.i(TAG,"onTouchEvent++++++ACTION_DOWN");
+                break;
         }
+        return super.onTouchEvent(event);
+    }
+    public interface MyTouchListener {
+        public void onTouchEvent(MotionEvent event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG, "dispatchTouchEvent: ACTION_UP");
+            case MotionEvent.ACTION_DOWN:
+                Log.i(TAG, "dispatchTouchEvent: ACTION_DOWN");
+            case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "dispatchTouchEvent: ACTION_MOVE");
+        }
+        return  super.dispatchTouchEvent(ev);
+
     }
 }

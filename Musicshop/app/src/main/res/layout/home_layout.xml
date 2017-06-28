@@ -4,11 +4,66 @@
     android:layout_height="match_parent"
     android:background="@color/home_top_reflash_bg"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/colorPrimary"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_qrcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/home_qrcode_button"/>
+            </LinearLayout>
+            <EditText
+                android:layout_weight="2"
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:paddingLeft="15dp"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/home_search_icon"
+                android:background="@drawable/home_search_edttext"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="10"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/home_message_button"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
     <com.musicdo.musicshop.view.JdRefreshLayout
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/test_recycler_view_frame"
+        android:layout_below="@id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/home_top_reflash_bg"
         cube_ptr:ptr_duration_to_close="100"
         cube_ptr:ptr_duration_to_close_header="500"
@@ -16,138 +71,107 @@
         cube_ptr:ptr_pull_to_fresh="false"
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
         cube_ptr:ptr_resistance="2" >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/home_top_reflash_bg"
-    android:orientation="horizontal">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        >
-        <RelativeLayout
-            android:id="@+id/rl_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            >
-            <LinearLayout
+
+            <ScrollView
+                android:id="@+id/sv_home_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@color/colorPrimary"
-                >
+                android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_weight="10"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/iv_qrcode"
-                        android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/home_top_reflash_bg"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/home_qrcode_button"/>
+                        android:gravity="center_vertical"
+                        >
+                        <RelativeLayout
+                            android:id="@+id/rl_loopswitch"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.musicdo.musicshop.loopswitch.AutoSwitchView
+                                android:id="@+id/loopswitch"
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp">
+
+                            </com.musicdo.musicshop.loopswitch.AutoSwitchView>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl_qrcode_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/rl_loopswitch">
+                            <ImageView
+                                android:id="@+id/iv"
+                                android:layout_width="60dp"
+                                android:layout_height="200dp"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:id="@+id/ll_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_below="@id/rl_qrcode_img">
+                            <Button
+                                android:id="@+id/btn_scan_barcode"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="30dp"
+                                android:text="Start Scan"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Result："
+                                    android:textSize="18sp"/>
+
+                                <TextView
+                                    android:id="@+id/tv_scan_result"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+
+                            <EditText
+                                android:id="@+id/et_qr_string"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:hint="Input the text"/>
+
+                            <Button
+                                android:id="@+id/btn_add_qrcode"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:text="Generate QRcode"/>
+
+                            <CheckBox
+                                android:id="@+id/logo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Logo"/>
+
+                            <ImageView
+                                android:id="@+id/iv_qr_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:background="@mipmap/ic_launcher"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
                 </LinearLayout>
-                <EditText
-                    android:layout_weight="2"
-                    android:id="@+id/et_search"
-                    android:layout_width="match_parent"
-                    android:paddingLeft="15dp"
-                    android:layout_centerVertical="true"
-                    android:drawableLeft="@mipmap/home_search_icon"
-                    android:background="@drawable/home_search_edttext"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_weight="10"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@mipmap/home_message_button"/>
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rl_qrcode_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rl_top">
-            <ImageView
-                android:id="@+id/iv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/rl_qrcode_img">
-            <Button
-                android:id="@+id/btn_scan_barcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Start Scan"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Result："
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/tv_scan_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"/>
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/et_qr_string"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:hint="Input the text"/>
-
-            <Button
-                android:id="@+id/btn_add_qrcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Generate QRcode"/>
-
-            <CheckBox
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Logo"/>
-
-            <ImageView
-                android:id="@+id/iv_qr_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@mipmap/ic_launcher"/>
-        </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+            </ScrollView>
     </com.musicdo.musicshop.view.JdRefreshLayout>
-
+    </RelativeLayout>
 </RelativeLayout>
